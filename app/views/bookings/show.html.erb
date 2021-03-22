@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Flight:</strong>
+  <%= @booking.flight_id %>
+</p>
+
+<p>
+  <strong>Number of passengers:</strong>
+  <%= @booking.number_of_passengers %>
+</p>
+
+<%= link_to 'Edit', edit_booking_path(@booking) %> |
+<%= link_to 'Back', bookings_path %>
