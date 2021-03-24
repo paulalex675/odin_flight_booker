@@ -1,0 +1,32 @@
+<%= form_with url: "bookings/new/", method: "get", local: true do |f| %>
+  <% @available_flights.each do |flight| %>
+    <% departing_city = flight.depart_city.name %>
+    <% arrive_city = flight.arrive_city.name %>
+    <% selected_date = flight.scheduled_to_depart.strftime('%B %d, %Y') %>
+    <% scheduled_time = flight.scheduled_to_depart.strftime('%H:%M') %>
+   
+
+    <div class="columns is-vcentered is-centered">
+      <div class="column is-narrow has-text-centered">
+        <%= radio_button_tag(:flight, flight.id, { checked: true }) %>
+      </div>
+
+      <div class="column is-three-fifths">
+        <div class="box">
+          <div class="columns">
+            <div class="column has-text-centered">
+              <%= scheduled_time %><br/>
+              <%= departing_city %>
+            </div>
+            <div class="column has-text-centered">
+            
+              <%= arrive_city %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= hidden_field_tag :pax, params[:pax] %>
+  <%= f.submit "Continue to passenger details", class: "button is-dark is-outlined" %>
+<% end %>

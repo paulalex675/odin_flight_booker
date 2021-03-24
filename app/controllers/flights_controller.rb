@@ -3,7 +3,20 @@ class FlightsController < ApplicationController
 
   # GET /flights or /flights.json
   def index
-    @flights = Flight.all
+    if params.has_key?(:day) && params.has_key?(:month) && params.has_key?(:year)
+      if params[:depart_city_id].blank?
+        flash.now[:alert] = "Departure city is missing"
+      elsif params[:arrive_city_id].blank?
+        flash.now[:alert] = "Destination city is missing"
+      elsif params[:pax].blank?
+        flash.now[:alert] = "Please choose the number of passengers"
+      elsif params[:depart_city_id] == params[:arrive_city_id]
+        flash.now[:alert] = "Please check your input"
+      else
+        @selected_date = Date.civil(params[:year].to_i, params[:month].to_i, params[:day].to_i)
+        @available_flights = Flight.where(depart_city_id: params[:depart_city_id], arrive_city_id: params[:arrive_city_id], scheduled_to_depart: @selected_date.all_day)
+      end
+    end 
   end
 
   # GET /flights/1 or /flights/1.json

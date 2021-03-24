@@ -1,0 +1,67 @@
+
+<%= form_with(url: "/flights", method: "get", local: true) do %>
+  <% @city_options = City.all.map { |city| [city.name, city.id] } %>
+  <% @year_options = Flight.all.map { |flight| flight.scheduled_to_depart.year }.uniq %>
+  <% @month_options = Flight.all.map { |flight| flight.scheduled_to_depart.month }.uniq %>
+  <% @day_options = Flight.all.map { |flight| flight.scheduled_to_depart.day }.uniq %>
+<div class="field is-horizontal">
+    <div class="field-body">
+      <div class="field">
+        <div class="control is-expanded">
+          <div class="select is-fullwidth">
+            <%= select_tag(:depart_city_id, options_for_select(@city_options, selected: params[:depart_city_id]), { prompt: 'From?' }) %>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control is-expanded">
+          <div class="select is-fullwidth">
+            <%= select_tag(:arrive_city_id, options_for_select(@city_options, selected: params[:arrive_city_id]), { prompt: 'To?' }) %>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <div class="select">
+            <%= select_tag(:pax, options_for_select(1..4, selected: params[:pax]), { prompt: 'Passengers' }) %>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-grouped is-grouped-right">
+        <div class="field">
+          <div class="control">
+            <div class="select">
+              <%= select_tag(:day, options_for_select(@day_options, selected: params[:day])) %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <div class="select">
+              <%= select_tag(:month, options_for_select(@month_options, selected: params[:month])) %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <div class="select">
+              <%= select_tag(:year, options_for_select(@year_options, selected: params[:year])) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-grouped is-grouped-right">
+    <div class="control">
+      <%= submit_tag("Show flights", class: "button is-dark is-outlined") %>
+    </div>
+  </div>
+
+<% end %>

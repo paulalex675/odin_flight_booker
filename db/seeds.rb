@@ -29,16 +29,16 @@ cities = City.create([
   ])
 
   flights = Flight.create([
-    { depart: cities.first, arrive: cities.second, time: "2021-09-25 08:30:00" },
-    { depart: cities.first, arrive: cities.third, time: "2021-08-25 08:30:00" },
-    { depart: cities.first, arrive: cities.fourth, time: "2021-07-25 07:30:00" },
-    { depart: cities.first, arrive: cities.last, time: "2021-06-25 09:00:00" },
-    { depart: cities.second, arrive: cities.first, time: "2021-09-25 10:00:00" },
-    { depart: cities.second, arrive: cities.third, time: "2021-09-25 12:00:00" },
-    { depart: cities.third, arrive: cities.first, time: "2021-07-25 12:30:00" },
-    { depart: cities.third, arrive: cities.last, time: "2021-05-25 15:00:00" },
-    { depart: cities.fourth, arrive: cities.first, time: "2021-10-25 16:00:00" },
-    { depart: cities.fourth, arrive: cities.second, time: "2021-06-25 08:40:00" },
-    { depart: cities.last, arrive: cities.first, time: "2021-05-25 09:30:00" },
-    { depart: cities.last, arrive: cities.second, time: "2021-04-25 20:00:00" }
+    { depart_city_id: cities.first.id, arrive_city_id: cities.second.id, scheduled_to_depart: "2021-09-25 08:30:00" },
+    { depart_city_id: cities.first.id, arrive_city_id: cities.third.id, scheduled_to_depart: "2021-08-25 08:30:00" },
+    { depart_city_id: cities.first.id, arrive_city_id: cities.fourth.id, scheduled_to_depart: "2021-07-25 07:30:00" },
+    { depart_city_id: cities.first.id, arrive_city_id: cities.last.id, scheduled_to_depart: "2021-06-25 09:00:00" },
+    { depart_city_id: cities.second.id, arrive_city_id: cities.first.id, scheduled_to_depart: "2021-09-25 10:00:00" },
+    { depart_city_id: cities.second.id, arrive_city_id: cities.third.id, scheduled_to_depart: "2021-09-25 12:00:00" },
+    { depart_city_id: cities.third.id, arrive_city_id: cities.first.id, scheduled_to_depart: "2021-07-25 12:30:00" },
+    { depart_city_id: cities.third.id, arrive_city_id: cities.last.id, scheduled_to_depart: "2021-05-25 15:00:00" },
+    { depart_city_id: cities.fourth.id, arrive_city_id: cities.first.id, scheduled_to_depart: "2021-10-25 16:00:00" },
+    { depart_city_id: cities.fourth.id, arrive_city_id: cities.second.id, scheduled_to_depart: "2021-06-25 08:40:00" },
+    { depart_city_id: cities.last.id, arrive_city_id: cities.first.id, scheduled_to_depart: "2021-05-25 09:30:00" },
+    { depart_city_id: cities.last.id, arrive_city_id: cities.second.id, scheduled_to_depart: "2021-04-25 20:00:00" }
   ])
