@@ -1,4 +1,4 @@
-<%= form_with model: Booking.new do |form| %>
+<%= form_with model: @booking, local: true do |form| %>
   <% if booking.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
@@ -9,23 +9,29 @@
         <% end %>
       </ul>
     </div>
-    <div>
-    Passengers:
-      <ul>
-        <%= form.fields_for :passengers do |passengers_form| %>
-          <li>
-            <%= passengers_form.label :name %>
-            <%= passengers_form.text_field :name %>
-
-            <%= passenger_form.label :email %>
-            <%= passenger_form.text_field :email %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
   <% end %>
 
+  <div>
+  Passengers:
+  <%= @passengers_count %>
+    <ul>
+      <%= form.fields_for :passengers do |passengers_form| %>
+        <li>
+          <%= passengers_form.label :name %>
+          <%= passengers_form.text_field :name %>
+
+          <%= passengers_form.label :email %>
+          <%= passengers_form.text_field :email %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <%= form.hidden_field :flight_id, value: params[:flight] %>
+  <%= form.hidden_field :number_of_passengers, value: params[:pax] %>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'purchase ticket' %>
   </div>
 <% end %>
+
