@@ -1,5 +1,10 @@
 <h1>New Booking</h1>
-<%= %>
+<div>
+  <%= @current_flight.depart_city.name %> 
+  - 
+  <%= @current_flight.arrive_city.name %>
+  <%= @current_flight.scheduled_to_depart %>
+</div>
 
 <%= render 'form', booking: @booking %>
 
